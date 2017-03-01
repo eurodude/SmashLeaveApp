@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'leave',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -103,7 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-gb'
 
 TIME_ZONE = 'UTC'
 
@@ -118,3 +119,57 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+EMPLOYEE_FTE_DEFAULT_HOURS = 8
+EMPLOYEE_FTE_DEFAULT_HOURS_WEEK = 40
+EMPLOYEE_FTE_DEFAULT_TR_COUNT = 18
+
+EMPLOYEE_FTE_LEAVE_HOURS = 240 # leave hours for a full time employee
+
+LEAVE_TYPES_CHOICES = (
+    (0, 'Leave Apply'),
+    (1, 'Sickness Leave'),
+    (2, 'Special Leave'),
+    (3, 'Political Leave'),
+)
+
+LEAVE_PERIODIC_CHOICES = (
+    (0,'once'),
+    (1,'weekly'),
+    (2,'bi-weekly'),
+    (3,'monthly'),
+    (4,'trimestrial'),
+    (5,'semestrial'),
+    (6,'yearly'),
+)
+
+# EMPLOYEE_DEFAULT_DAY = [starttime,lunchtime,lunchlength(mins),endtime]
+EMPLOYEE_DEFAULT_DAY = ['08:00','12:00',60,'17:00']
+EMPLOYEE_DEFAULT_SCHEDULE = {
+    'monday': EMPLOYEE_DEFAULT_DAY,
+    'tuesday': EMPLOYEE_DEFAULT_DAY,
+    'wednesday': EMPLOYEE_DEFAULT_DAY,
+    'thursday': EMPLOYEE_DEFAULT_DAY,
+    'friday' : EMPLOYEE_DEFAULT_DAY,
+    'saturday': [],
+    'sunday': [],
+}
+
+# Leave can be taken until march 31st of the next year
+EMPLOYEE_LEAVE_NEXT_YEAR_LIMIT = [31,3,1]
+EMPLOYEE_MAX_LEAVE_TO_NEXT_YEAR = EMPLOYEE_FTE_DEFAULT_HOURS*10 # 10 days in hours
+
+EMPLOYEE_SPECIAL_LEAVE_DAYS = {
+    'marriage': 16,
+    'child-birth': 48,
+    'address-change': 16,
+    'death-close': 16,
+    'death-relative': 8,
+}
+
+# recover on [monday, tuesday, wednesday, thursday, friday, saturday, sunday]
+EMPLOYEE_PUBLIC_HOLIDAY_RECOVER = [0,0,0,0,0,1,1]
+
+MIN_PASSWORD_LENGTH = 12
+
+ADMIN_LIST = ['theadmin@mail.com',]
