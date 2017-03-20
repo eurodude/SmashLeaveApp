@@ -4,7 +4,7 @@ Definition of models.
 
 from django.db import models
 from django.contrib.auth.models import User
-from datetime.datetime import strptime
+from time import strptime
 
 from LeaveApp.settings import LEAVE_TYPES_CHOICES
 from LeaveApp.settings import EMPLOYEE_DEFAULT_DAY

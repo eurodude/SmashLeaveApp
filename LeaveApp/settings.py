@@ -31,7 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'leave',
+    'Leave',
+    'OnCallApp',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -124,14 +125,30 @@ EMPLOYEE_FTE_DEFAULT_HOURS = 8
 EMPLOYEE_FTE_DEFAULT_HOURS_WEEK = 40
 EMPLOYEE_FTE_DEFAULT_TR_COUNT = 18
 
-EMPLOYEE_FTE_LEAVE_HOURS = 240 # leave hours for a full time employee
+EMPLOYEE_FTE_LEAVE_HOURS = 240 # Leave hours for a full time employee
 
 LEAVE_TYPES_CHOICES = (
     (0, 'Leave Apply'),
     (1, 'Sickness Leave'),
     (2, 'Special Leave'),
     (3, 'Political Leave'),
+    (4, 'Mission'),
+    (5, 'Teleworking'),
 )
+
+LEAVE_RESTRICTIONS = {
+    0:{'limit_leave':True,'allowance_required':False,'fixed_length':False,},
+    1:{'limit_leave':False,'allowance_required':False,'fixed_length':False,},
+    2:{'limit_leave':False,'allowance_required':True,'fixed_length':True,},
+    3:{'limit_leave':False,'allowance_required':True,'fixed_length':True,},
+    4:{'limit_leave':False,'allowance_required':False,'fixed_length':False,},
+    5:{'limit_leave':True,'allowance_required':False,'fixed_length':False,},
+}
+
+ON_CALL_CONFIG = {
+    'day_count':7,
+    'day_start':0, #Monday 
+}
 
 LEAVE_PERIODIC_CHOICES = (
     (0,'once'),
